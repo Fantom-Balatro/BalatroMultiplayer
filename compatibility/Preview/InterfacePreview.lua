@@ -27,7 +27,10 @@ function create_UIBox_HUD()
 	return contents
 end
 
-function G.FUNCS.calculate_score_button()
+function G.FUNCS.calculate_score_button(e)
+	if MP.is_major_league_ruleset() and MP.GAME.score_preview_used then return end
+	MP.GAME.score_preview_used = MP.is_major_league_ruleset() or MP.GAME.score_preview_used
+	if e then e.config.button = nil end
 	FN.PRE.start_new_coroutine()
 end
 

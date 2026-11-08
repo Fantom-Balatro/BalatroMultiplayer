@@ -218,6 +218,7 @@ function MP.reset_game_states()
 		comeback_bonus_given = true,
 		comeback_bonus = 0,
 		end_pvp = false,
+		score_preview_used = false,
 		enemy = {
 			score = MP.INSANE_INT.empty(),
 			real_score = MP.INSANE_INT.empty(),
