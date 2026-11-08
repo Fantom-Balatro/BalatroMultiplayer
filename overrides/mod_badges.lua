@@ -2,7 +2,11 @@
 local create_mod_badges_ref = SMODS.create_mod_badges
 function SMODS.create_mod_badges(obj, badges)
 	create_mod_badges_ref(obj, badges)
-	if MP.INTEGRATIONS.Preview and not (MP.LOBBY.config and MP.LOBBY.config.preview_disabled) then
+	local preview_is_active = MP.INTEGRATIONS.Preview
+		and not (MP.LOBBY.config and MP.LOBBY.config.preview_disabled)
+	local preview_badge_hidden = preview_is_active
+		and not (MP.is_major_league_ruleset() and MP.GAME.score_preview_used)
+	if preview_badge_hidden then
 		for i = #badges, 1, -1 do
 			local badge_colour = badges[i].nodes
 				and badges[i].nodes[1]
