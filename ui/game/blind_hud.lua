@@ -36,6 +36,10 @@ function MP.UI.update_blind_HUD(blind, reset, silent)
         G.HUD_blind:get_UIE_by_ID("HUD_blind_count").config.func = "multiplayer_blind_chip_UI_scale"
         -- Setup labels
         -- Casual balala UI experience right here
+        local preview_badge_hidden = MP.INTEGRATIONS.Preview
+            and not (MP.LOBBY.config and MP.LOBBY.config.preview_disabled)
+            and not (MP.is_major_league_ruleset() and MP.GAME.score_preview_used)
+        G.HUD_blind:get_UIE_by_ID("HUD_blind_badge").states.visible = not preview_badge_hidden
         G.HUD_blind:get_UIE_by_ID("HUD_blind").children[2].children[2].children[2].children[1].children[1].config.text =
             localize("k_enemy_score")
         G.HUD_blind:get_UIE_by_ID("HUD_blind").children[2].children[2].children[2].children[3].children[1].config.text =
