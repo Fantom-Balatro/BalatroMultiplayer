@@ -194,6 +194,7 @@ function MP.reset_lobby_config(persist_ruleset_and_gamemode)
 		multiplayer_jokers = true,
 		timer = true,
 		timer_forgiveness = 0,
+		scaling_comeback_money = false,
 		forced_config = false,
 		preview_disabled = false,
 		legacy_smallworld = false,

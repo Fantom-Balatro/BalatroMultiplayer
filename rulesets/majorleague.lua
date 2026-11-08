@@ -27,6 +27,7 @@ MP.Ruleset({
 		MP.LOBBY.config.preview_disabled = true
 		MP.LOBBY.config.enemy_location_disabled = true
 		MP.LOBBY.config.timer_display_threshold = 180
+		MP.LOBBY.config.hide_score_until_played = true
 		return true
 	end,
 }):inject()

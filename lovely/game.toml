@@ -27,7 +27,19 @@ payload = '''
 		    comeback_bonus = 3 * (G.GAME.round_resets.ante - 1)
 		else
 			if MP.is_major_league_ruleset() then 
-				comeback_bonus = 4 * MP.GAME.comeback_bonus
+        if MP.LOBBY.scaling_comeback_money == true then
+          if G.GAME.round_resets.ante == 1 then
+            comeback_bonus = 3
+          else if G.GAME.round_resets.ante == 2 then
+            comeback_bonus = 4
+          else if G.GAME.round_resets.ante == 3 then
+            comeback_bonus = 5
+          else
+            comeback_bonus = 6
+          end
+        else
+				  comeback_bonus = 4
+        end
 			else
 				if G.GAME.stake >= 6 then
 					comeback_bonus = 2
