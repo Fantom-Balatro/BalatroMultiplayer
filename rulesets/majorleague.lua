@@ -14,6 +14,7 @@ MP.Ruleset({
 	reworked_enhancements = {},
 	reworked_tags = {},
 	reworked_blinds = {},
+	layers = { "pvp_timer" },
 	forced_gamemode = "gamemode_mp_attrition",
 	forced_lobby_options = true,
 	is_disabled = function(self)
