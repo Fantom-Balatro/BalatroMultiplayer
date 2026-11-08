@@ -38,7 +38,15 @@ function G.FUNCS.calculate_score_button(e)
 		end
 		if G.HUD_blind then
 			local blind_badge = G.HUD_blind:get_UIE_by_ID("HUD_blind_badge")
-			if blind_badge then blind_badge.states.visible = true end
+			if blind_badge then
+				blind_badge.states.visible = true
+				blind_badge.config.minh = nil
+				blind_badge.config.minw = nil
+				blind_badge.config.padding = nil
+				blind_badge.config.r = 0.1
+				blind_badge.config.emboss = nil
+				G.HUD_blind:recalculate()
+			end
 		end
 	else
 		if e then e.config.button = nil end

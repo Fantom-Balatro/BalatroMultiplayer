@@ -39,7 +39,14 @@ function MP.UI.update_blind_HUD(blind, reset, silent)
         local preview_badge_hidden = MP.INTEGRATIONS.Preview
             and not (MP.LOBBY.config and MP.LOBBY.config.preview_disabled)
             and not (MP.is_major_league_ruleset() and MP.GAME.score_preview_used)
-        G.HUD_blind:get_UIE_by_ID("HUD_blind_badge").states.visible = not preview_badge_hidden
+        local blind_badge = G.HUD_blind:get_UIE_by_ID("HUD_blind_badge")
+        blind_badge.states.visible = not preview_badge_hidden
+        blind_badge.config.minh = preview_badge_hidden and 0 or nil
+        blind_badge.config.minw = preview_badge_hidden and 0 or nil
+        blind_badge.config.padding = preview_badge_hidden and 0 or nil
+        blind_badge.config.r = preview_badge_hidden and 0 or 0.1
+        blind_badge.config.emboss = preview_badge_hidden and 0 or nil
+        G.HUD_blind:recalculate()
         G.HUD_blind:get_UIE_by_ID("HUD_blind").children[2].children[2].children[2].children[1].children[1].config.text =
             localize("k_enemy_score")
         G.HUD_blind:get_UIE_by_ID("HUD_blind").children[2].children[2].children[2].children[3].children[1].config.text =
