@@ -485,9 +485,11 @@ function Game:update(dt)
 
 	if MP.GAME.timer == 0 then
 		MP.GAME.timer_consumed = true
-		-- PvP timer: end PvP immediately as a loss (only when timered by opponent)
+		-- PvP timer: lose hand immediately as a loss (only when timered by opponent)
 		if is_pvp_timer then
-			if MP.GAME.nemesis_timer_started then MP.ACTIONS.fail_pvp_timer() end
+			if MP.GAME.nemesis_timer_started and G.GAME.current_round.hands_left > 0 then 
+				G.GAME.current_round.hands_left = G.GAME.current_round.hands_left - 1
+			end
 		-- Old, No-animations: lose a live when timered by opponent
 		-- Pressure timers: lose a live regardless
 		elseif is_pressure_timer or MP.GAME.nemesis_timer_started then
