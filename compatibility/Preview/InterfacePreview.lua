@@ -27,6 +27,23 @@ function create_UIBox_HUD()
 	return contents
 end
 
+local orig_hud_blind = create_UIBox_HUD_blind
+function create_UIBox_HUD_blind()
+	local contents = orig_hud_blind()
+	local preview_badge_hidden = MP.INTEGRATIONS.Preview
+		and not (MP.LOBBY.config and MP.LOBBY.config.preview_disabled)
+		and not (MP.is_major_league_ruleset() and MP.GAME.score_preview_used)
+	if preview_badge_hidden and contents.nodes then
+		for i = #contents.nodes, 1, -1 do
+			if contents.nodes[i].config and contents.nodes[i].config.id == "HUD_blind_badge" then
+				table.remove(contents.nodes, i)
+				break
+			end
+		end
+	end
+	return contents
+end
+
 function G.FUNCS.calculate_score_button(e)
 	if MP.is_major_league_ruleset() and MP.GAME.score_preview_used then return end
 	MP.GAME.score_preview_used = MP.is_major_league_ruleset() or MP.GAME.score_preview_used
