@@ -25,7 +25,9 @@ function G.FUNCS.mp_timer_button(e)
 			MP.ACTIONS.start_ante_timer()
 			if MP.is_pvp_boss() and MP.is_layer_active("pvp_timer") then MP.GAME.pvp_timer_activated = true end
 		else
-			MP.ACTIONS.pause_ante_timer()
+			if MP.is_pvp_boss() then
+				MP.ACTIONS.pause_ante_timer()
+			end
 			if MP.is_pvp_boss() and MP.is_layer_active("pvp_timer") then MP.GAME.pvp_timer_activated = false end
 		end
 	end
