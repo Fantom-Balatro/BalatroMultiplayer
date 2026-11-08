@@ -1204,7 +1204,7 @@ function MP.ACTIONS.set_location(location, blind)
 	then
 		MP.ACTIONS.start_ante_timer()
 	end
-	
+
 	Client.send({
 		action = "setLocation",
 		location = location,
@@ -1371,7 +1371,7 @@ function MP.ACTIONS.start_ante_timer()
 
 	action_start_ante_timer({ time = MP.GAME.timer, fromNemesis = false })
 
-	if threshold > 0 and MP.GAME.timer > threshold then
+	if threshold > 0 and MP.GAME.timer > threshold and not MP.is_pvp_boss()then
 		MP.GAME.timer_threshold_pending = true
 	else
 		Client.send({
