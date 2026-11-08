@@ -39,12 +39,18 @@ function G.FUNCS.calculate_score_button(e)
 		if G.HUD_blind then
 			local blind_badge = G.HUD_blind:get_UIE_by_ID("HUD_blind_badge")
 			if blind_badge then
-				blind_badge.states.visible = true
 				blind_badge.config.minh = nil
 				blind_badge.config.minw = nil
 				blind_badge.config.padding = nil
 				blind_badge.config.r = 0.1
 				blind_badge.config.emboss = nil
+				G.HUD_blind:recalculate()
+			else
+				G.HUD_blind:set_parent_child({
+					n = G.UIT.R,
+					config = { align = "cm", r = 0.1, id = "HUD_blind_badge", func = "HUD_blind_badge" },
+					nodes = {},
+				}, G.HUD_blind:get_UIE_by_ID("HUD_blind"))
 				G.HUD_blind:recalculate()
 			end
 		end
