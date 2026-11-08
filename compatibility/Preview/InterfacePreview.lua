@@ -30,7 +30,16 @@ end
 function G.FUNCS.calculate_score_button(e)
 	if MP.is_major_league_ruleset() and MP.GAME.score_preview_used then return end
 	MP.GAME.score_preview_used = MP.is_major_league_ruleset() or MP.GAME.score_preview_used
-	if e then e.config.button = nil end
+	if MP.is_major_league_ruleset() and e then
+		if e.parent then
+			e.parent:remove()
+		else
+			e:remove()
+		end
+	else
+		if e then e.config.button = nil end
+	end
+	if G.HUD then G.HUD:recalculate() end
 	FN.PRE.start_new_coroutine()
 end
 
