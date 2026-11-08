@@ -1196,6 +1196,15 @@ function MP.ACTIONS.set_location(location, blind)
 	MP.GAME.location_type = location_type
 	MP.GAME.location_blind = location_blind
 	MP.GAME.location_full = location
+
+	if location_type == "loc_ready"
+		and MP.LOBBY.config.timer
+		and not MP.GAME.timer_consumed
+		and not MP.GAME.timer_started
+	then
+		MP.ACTIONS.start_ante_timer()
+	end
+	
 	Client.send({
 		action = "setLocation",
 		location = location,
