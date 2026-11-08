@@ -489,6 +489,7 @@ function Game:update(dt)
 		if is_pvp_timer then
 			if MP.GAME.nemesis_timer_started and G.GAME.current_round.hands_left > 0 then
 				G.GAME.current_round.hands_left = G.GAME.current_round.hands_left - 1
+				if G.GAME.current_round.hands_left == 0 then MP.ACTIONS.fail_pvp_timer() end
 			end
 		-- Old, No-animations: lose a live when timered by opponent
 		-- Pressure timers: lose a live regardless
